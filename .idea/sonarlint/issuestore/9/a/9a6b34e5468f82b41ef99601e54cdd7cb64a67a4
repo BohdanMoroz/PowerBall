@@ -1,0 +1,5 @@
+
+bsquid:UselessImportCheck
+"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8ìœÒŞÍ,
+Usquid:S1068"2Remove this unused "redBallChecked" private field.(•ŒĞŒÿÿÿÿÿ8áÕËÚÍ,
+€squid:S1450"]Remove the "redBallChecked" field and declare it as a local variable in the relevant methods.(•ŒĞŒÿÿÿÿÿ8áÕËÚÍ,
