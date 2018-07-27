@@ -1,7 +1,7 @@
 package com.powerball;
 
 public class Cashier {
-//    int prizeAmount;
+
     int JackPot = 999_999_999;
     Ticket ticket;
 
@@ -10,7 +10,7 @@ public class Cashier {
     }
 
     public void pay(int i){
-        ticket.setPrize(i);
+        ticket.setPrize(i * ticket.getPowerPlayMultiplier());
     }
 
     public void calcPrizeAmount(){

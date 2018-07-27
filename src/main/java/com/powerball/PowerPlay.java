@@ -44,7 +44,7 @@ public class PowerPlay {
 
     public void generateMultiplier() {
         Collections.shuffle(list);
-        multiplier = list.get(random.nextInt(42) + 1);
+        multiplier = list.get(random.nextInt(42));
     }
 
     public int getMultiplier() {
