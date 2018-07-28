@@ -1,8 +1,4 @@
-/*
-
-
-
- */
+//Generates and return ball value
 
 package com.powerball;
 
@@ -11,6 +7,7 @@ import java.util.Random;
 public class ValueGenerator {
     private static final int WHITE_BALL_AMOUNT = 69;
     private static final int RED_BALL_AMOUNT = 26;
+    private static final int RED_BALL_POSITION = 5;
 
     private Random valueGenerator;
     private int ballValue;
@@ -20,11 +17,11 @@ public class ValueGenerator {
     }
 
     private boolean isBallRed(int ballNumber){
-        return (ballNumber == 5) ? true : false;
+        return (ballNumber == RED_BALL_POSITION);
     }
 
     private boolean isBallWhite(int ballNumber){
-        return (ballNumber >= 0 && ballNumber < 5) ? true : false;
+        return (ballNumber >= 0 && ballNumber < RED_BALL_POSITION);
     }
 
     public void generateBallValue(int ballNumber){

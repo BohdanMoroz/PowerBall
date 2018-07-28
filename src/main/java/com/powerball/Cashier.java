@@ -1,20 +1,20 @@
+// Pay money for win ticket
+
 package com.powerball;
 
 public class Cashier {
-
-    int JackPot = 999_999_999;
-    Ticket ticket;
+    private static int jackPot = 999_999_999;
+    private Ticket ticket;
 
     Cashier(Ticket ticket){
         this.ticket = ticket;
     }
 
-    public void pay(int i){
+    private void pay(int i){
         ticket.setPrize(i * ticket.getPowerPlayMultiplier());
     }
 
     public void calcPrizeAmount(){
-
         if (ticket.isRedBallWin()) {
             switch (ticket.getWinningWhiteBallsNumber()) {
                 case 0:
@@ -26,7 +26,7 @@ public class Cashier {
                     return;
                 case 4: pay(50_000);
                     return;
-                case 5: pay(JackPot);
+                case 5: pay(jackPot);
                     return;
                 default: pay(0);
             }

@@ -1,34 +1,29 @@
-/*
-
-
-
- */
+// Check win
 
 package com.powerball;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class TicketChecker {
+    private static final int RED_BALL_POSITION = 5;
+    private static final int CHECKED_NUMBER_VALUE = -1;
+
     private List<Integer> ticketCombination;
     private List<Integer> winCombination;
-    Ticket ticket;
+    private Ticket ticket;
 
     private int whiteBallCounter;
     private boolean redBallChecked;
-//    private Prize prize = new Prize();
 
     TicketChecker(Ticket ticket, List<Integer> winCombination){
+        this.ticket = ticket;
         ticketCombination = new ArrayList<>(ticket.getCombination());
-
         this.winCombination = new ArrayList<>(winCombination);
     }
 
-
-
     private void checkRedBall() {
-        if ( !winCombination.get(5).equals(ticketCombination.get(5)) ) {
+        if ( !winCombination.get(RED_BALL_POSITION).equals(ticketCombination.get(RED_BALL_POSITION)) ) {
             return;
         }
         redBallChecked = true;
@@ -37,12 +32,12 @@ public class TicketChecker {
     public void compareCombinations(){
         checkRedBall();
 
-        for (int i = 0; i < 5; i++){
-            for (int j = 0; j < 5; j++){
-                if ( (winCombination.get(i) == ticketCombination.get(j)) && (winCombination.get(i) != -1) ){
+        for (int i = 0; i < RED_BALL_POSITION; i++){
+            for (int j = 0; j < RED_BALL_POSITION; j++){
+                if ( (winCombination.get(i) == ticketCombination.get(j)) && (winCombination.get(i) != CHECKED_NUMBER_VALUE) ){
                     whiteBallCounter++;
-                    winCombination.set(i, -1);
-                    ticketCombination.set(j, -1);
+                    winCombination.set(i, CHECKED_NUMBER_VALUE);
+                    ticketCombination.set(j, CHECKED_NUMBER_VALUE);
                     break;
                 }
             }
@@ -53,12 +48,4 @@ public class TicketChecker {
         ticket.setRedBallWin(redBallChecked);
         ticket.setWinningWhiteBallsNumber(whiteBallCounter);
     }
-
-//    public String getResult() {
-//        if (prizeAmount > 0) {
-//            return "You won $" + prizeAmount;
-//        } else {
-//            return "You lose. Try again!";
-//        }
-//    }
 }

@@ -1,3 +1,5 @@
+//Simulate PowerPlay Mode
+
 package com.powerball;
 
 import java.util.ArrayList;
@@ -10,13 +12,11 @@ public class PowerPlay {
     private static final int X_3_AMOUNT = 13;
     private static final int X_4_AMOUNT = 3;
     private static final int X_5_AMOUNT = 2;
-    private static final int X_10_AMOUNT = 1;
 
     private static final int X_2_MULTIPLIER = 2;
     private static final int X_3_MULTIPLIER = 3;
     private static final int X_4_MULTIPLIER = 4;
     private static final int X_5_MULTIPLIER = 5;
-    private static final int X_10_MULTIPLIER = 10;
 
     private List<Integer> list;
     private Random random = new Random();
@@ -28,17 +28,17 @@ public class PowerPlay {
 
     private void initList(){
         list = new ArrayList();
-        for (int i = 0; i < 24; i++){
-            list.add(2);
+        for (int i = 0; i < X_2_AMOUNT; i++){
+            list.add(X_2_MULTIPLIER);
         }
-        for (int i = 0; i < 13; i++){
-            list.add(3);
+        for (int i = 0; i < X_3_AMOUNT; i++){
+            list.add(X_3_MULTIPLIER);
         }
-        for (int i = 0; i < 3; i++){
-            list.add(4);
+        for (int i = 0; i < X_4_AMOUNT; i++){
+            list.add(X_4_MULTIPLIER);
         }
-        for (int i = 0; i < 2; i++){
-            list.add(5);
+        for (int i = 0; i < X_5_AMOUNT; i++){
+            list.add(X_5_MULTIPLIER);
         }
     }
 

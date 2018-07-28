@@ -1,28 +1,32 @@
-/*
-
-
-
- */
+//Generates and return play combination
 
 package com.powerball;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class CombinationGenerator {
 
-    private ValueGenerator valueGenerator = new ValueGenerator();
+    private static final int BALL_IN_COMBINATION = 6;
 
-    private List<Integer> combination = new ArrayList<>(6);
+    private static ValueGenerator valueGenerator = new ValueGenerator();
+    private static List<Integer> combination = new ArrayList<>(BALL_IN_COMBINATION);
+
+    private void sortWhiteBalls() {
+        Collections.sort(combination.subList(0,5));
+    }
 
     public void generateCombination() {
-        for (int indexOfBall = 0; indexOfBall < 6; indexOfBall++){
+        for (int indexOfBall = 0; indexOfBall < BALL_IN_COMBINATION; indexOfBall++){
             valueGenerator.generateBallValue(indexOfBall);
             combination.add(valueGenerator.getBallValue());
         }
         sortWhiteBalls();
+    }
+
+    public List<Integer> getCombination(){
+        return combination;
     }
 
     @Override
@@ -30,13 +34,5 @@ public class CombinationGenerator {
         return "CombinationGenerator{" +
                 "combination=" + combination +
                 '}';
-    }
-
-    public void sortWhiteBalls() {
-        Collections.sort(combination.subList(0,5));
-    }
-
-    public List<Integer> getCombination(){
-        return combination;
     }
 }

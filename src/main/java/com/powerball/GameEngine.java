@@ -1,37 +1,63 @@
+/*
+
+Perform game logic
+
+ */
+
 package com.powerball;
+
+import java.util.List;
 
 public class GameEngine {
     private Ticket ticket;
-    private TicketRegistrator ticketRegistrator;
+    private CombinationGenerator combinationGenerator;
 
-    public void play(){
+    GameEngine(){
+        combinationGenerator = new CombinationGenerator();
+    }
+
+    public List<Integer> useTicket(){
+
         ticket = new Ticket();
-        System.out.println("Ticket created");
-        ticketRegistrator = new TicketRegistrator(ticket);
-        System.out.println("TicketRegistrator created");
+        TicketRegistrator ticketRegistrator = new TicketRegistrator(ticket);
         ticketRegistrator.easyPick();
-        System.out.println("EasyPick performed");
+
 //        ticketRegistrator.manualCombination();
-        ticketRegistrator.setPowerPlayEnabled();
-        System.out.println("PowerPlay setted");
+//        ticketRegistrator.setPowerPlayEnabled();
+
         ticketRegistrator.checkPowerPlay();
-        System.out.println("PowerPlay checked");
         ticketRegistrator.registerTicket();
-        System.out.println("Ticket registered");
 
-        CombinationGenerator combinationGenerator = new CombinationGenerator();
+        System.out.println(ticket.getCombination());
+        return ticket.getCombination();
+    }
+
+    public List<Integer> generateWinCombination(){
         combinationGenerator.generateCombination();
+        System.out.println(combinationGenerator.getCombination());
+        return combinationGenerator.getCombination();
+    }
 
-        TicketChecker winAssigner = new TicketChecker(ticket, combinationGenerator.getCombination());
-        winAssigner.compareCombinations();
+    public void checkWin(){
+        TicketChecker ticketChecker = new TicketChecker(ticket, combinationGenerator.getCombination());
+        ticketChecker.compareCombinations();
+        ticketChecker.checkTicket();
+        System.out.println(ticket.getWinningWhiteBallsNumber());
 
+    }
+
+    public int getResult(){
         Cashier cashier = new Cashier(ticket);
         cashier.calcPrizeAmount();
         System.out.println(ticket.getPrize());
-        System.out.println("END");
 
+        return ticket.getPrize();
+    }
 
-
-
+    public void play(){
+        useTicket();
+        generateWinCombination();
+        checkWin();
+        getResult();
     }
 }

@@ -1,8 +1,4 @@
-/*
-
-
-
- */
+// Simulate ticket filling
 
 package com.powerball;
 
@@ -13,7 +9,6 @@ public class TicketRegistrator  {
     private ValueValidator valueValidator;
     private Scanner scanner;
     private List<Integer> combination;
-    private PowerPlay powerPlay;
 
     private boolean powerPlayEnabled;
 
@@ -21,6 +16,10 @@ public class TicketRegistrator  {
         this.ticket = ticket;
         scanner = new Scanner(System.in);
         valueValidator = new ValueValidator(combination);
+    }
+
+    private void sortWhiteBalls() {
+        Collections.sort(combination.subList(0,5));
     }
 
     public void manualCombination(){
@@ -39,6 +38,7 @@ public class TicketRegistrator  {
     }
 
     public void checkPowerPlay(){
+        PowerPlay powerPlay;
         if (powerPlayEnabled) {
             powerPlay = new PowerPlay();
             powerPlay.generateMultiplier();
@@ -47,13 +47,9 @@ public class TicketRegistrator  {
         }
     }
 
-    public void sortWhiteBalls() {
-        Collections.sort(combination.subList(0,5));
-    }
 
-    CombinationGenerator generator = new CombinationGenerator();
     public void easyPick(){
-
+        CombinationGenerator generator = new CombinationGenerator();
         generator.generateCombination();
         combination = new ArrayList<>(generator.getCombination());
     }
